@@ -1,5 +1,5 @@
 # Config
-android_kernel_branch := "android-gs-felix-6.1-android15-qpr2-beta"
+android_kernel_branch := "android-gs-felix-6.1-android16"
 
 # Tools
 repo := require("repo")
@@ -8,25 +8,29 @@ repo := require("repo")
 default:
   just --list
 
+# Will take around 1hr
 [group('kernel')]
 [working-directory: 'kernel/source']
-clone_android_kernel_source:
+clone_kernel_source:
   @echo "Cloning Android kernel from branch: {{android_kernel_branch}}"
   {{repo}} init -u https://android.googlesource.com/kernel/manifest -b {{android_kernel_branch}}
-  {{repo}} sync -j {{ num_cpus() }} # Will take like 30m minimum, probably at least 1hr
+  {{repo}} sync -j {{ num_cpus() }}
 
 
+# TODO: depend on clone_kernel_source
 [group('kernel')]
-[working-directory: 'kernel']
-build_kernel:
-  # TODO: Make build directory in kernel
-  # TODO: depend on clone_android_kernel_source
+[working-directory: 'kernel/source']
+build_kernel: 
+  tools/bazel clean --expunge
+  cp -r ../custom_defconfig_mod .
+  tools/bazel run \
+    --config=use_source_tree_aosp \
+    --config=stamp \
+    --config=felix \
+    --defconfig_fragment=//custom_defconfig_mod:custom_defconfig \
+    //private/devices/google/felix:gs201_felix_dist
 
-
-# Download android boot image
-
-# customize_kernel w/ some fragment?
-# clone_and_build_kernel: clone_android_kernel_source customize_kernel
+# Download android boot image?
 # init boot, download existing android boot image
 # debian/ubuntu rootfs
 # flash?
