@@ -1,0 +1,3 @@
+[submodule "tools/mkbootimg"]
+	path = tools/mkbootimg
+	url = https://android.googlesource.com/platform/system/tools/mkbootimg

@@ -9,7 +9,10 @@ Automated flow for
 * [repo](https://source.android.com/docs/setup/download/source-control-tools)
 
 ## Customizing Kernel
-Add/remove kernel modules in [defconfig fragment](kernel/custom_defconfig_mod/custom_defconfig).
+Add/remove kernel modules in the defconfig fragment [custom_defconfig](kernel/custom_defconfig_mod/custom_defconfig).
+
+## Installing Additional Debian/Ubuntu Packages
+Add/remove packages in [packages.txt](rootfs/packages.txt). **Specify one package per-line**.
 
 ## Building
 ```shell
