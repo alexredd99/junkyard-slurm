@@ -1,0 +1,7 @@
+busybox
+iproute2
+dracut
+binutils
+lz4
+network-manager
+cryptsetup
