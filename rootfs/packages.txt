@@ -1,7 +1,17 @@
 busybox
 iproute2
+iputils-ping
 dracut
 binutils
 lz4
 network-manager
 cryptsetup
+vim
+dhcpcd
+build-essential
+fdisk
+zsh
+parted
+openssh-server
+ethtool
+usbutils

@@ -9,6 +9,12 @@ Automated flow for
 * [just](https://github.com/casey/just)
 * [repo](https://source.android.com/docs/setup/download/source-control-tools)
 
+## TODO
+* Proper fstab
+* Dedicated phone/server for automatically building everything natively
+* Mount vendor partition (and other partitions by label)
+* DISABLE SLEEP WHEN SHUT
+
 ## Customizing Kernel
 Add/remove kernel modules in the defconfig fragment [custom_defconfig](kernel/custom_defconfig_mod/custom_defconfig). You may have to first add/remove modules manually with something like `nconfig` to see which other dependent modules also need to be added.
 
@@ -21,3 +27,8 @@ Add/remove packages in [packages.txt](rootfs/packages.txt). **Specify one packag
 ```shell
 just ...
 ```
+
+## Flashing
+* Flash clean android @ _link_
+* flash new boot, vendor_boot, super
+* fastboot oem disable-verity && fastboot oem disable-verification
